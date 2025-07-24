@@ -6,7 +6,7 @@ function Profilepic(){
         try{
         e.preventDefault();
         setimage(e.target.files[0])
-        const res = await axios.post("http://localhost:5501/user/upload",{
+        const res = await axios.post("https://lynk-backend-bmv8.onrender.com/user/upload",{
             body:image,
         })
         const data = res.json();
