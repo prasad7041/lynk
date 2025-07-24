@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-
+import image from "../images/Screenshot from 2025-03-19 11-13-46.png"
 function Main() {
   const textRef = useRef(null);
   const imageRef = useRef(null);
@@ -27,7 +27,7 @@ function Main() {
       </div>
       <img
         ref={imageRef}
-        src="Screenshot from 2025-03-19 11-13-46.png"
+        src={image}
         className="max-w-md w-full h-auto object-contain rounded-2xl"
         alt="Main visual"
       />
