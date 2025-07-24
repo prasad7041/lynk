@@ -17,7 +17,7 @@ function TargetProfile() {
     const fetchData = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:5501/user/targetprofile",
+          "https://lynk-backend-bmv8.onrender.com/user/targetprofile",
           { username: targetname },
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -52,7 +52,7 @@ function TargetProfile() {
     try {
       const endpoint = isFollowing ? "unfollow" : "follow";
       const res = await axios.post(
-        `http://localhost:5501/user/${endpoint}`,
+        `https://lynk-backend-bmv8.onrender.com/user/${endpoint}`,
         { targetname: userProfile.username },
         {
           headers: { Authorization: `Bearer ${token}` },
