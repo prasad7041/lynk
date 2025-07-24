@@ -28,7 +28,7 @@ export const Message = () => {
       return navigate('/login');
     }
 
-    const ws = new WebSocket(`ws://localhost:5501?token=${token}`);
+    const ws = new WebSocket(`ws://lynk-backend-bmv8.onrender.com?token=${token}`);
     setSocket(ws);
 
     ws.onopen = () => {
@@ -95,7 +95,7 @@ const sendPrivateMessage = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `http://localhost:5501/user/chat-history/${userRef.current.id}/${userId}`,
+        `https://lynk-backend-bmv8.onrender.com/user/chat-history/${userRef.current.id}/${userId}`,
         {
           headers: { 'Authorization': `Bearer ${token}` }
         }
