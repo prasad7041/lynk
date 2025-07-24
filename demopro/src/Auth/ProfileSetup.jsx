@@ -13,7 +13,7 @@ const ProfileSetup = ({ userid }) => {
     const formData1 = new FormData();
       formData1.append("image", file);
 
-      const uploadRes = await fetch("http://localhost:5501/user/upload", {
+      const uploadRes = await fetch("https://lynk-backend-bmv8.onrender.com/user/upload", {
         method: "POST",
         body: formData1,
       });
