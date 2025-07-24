@@ -20,7 +20,7 @@ function Search() {
         }
 
         try {
-          const res = await axios.get(`http://localhost:5501/user/search?q=${value}`);
+          const res = await axios.get(`https://lynk-backend-bmv8.onrender.com/user/search?q=${value}`);
           setResults(res.data);
         } catch (err) {
           console.error("Search failed", err);
