@@ -1,0 +1,168 @@
+//JWT basics
+const secretkey = "secretkey"
+const users = [{
+  id:"1",
+  username:"prasad",
+  password:"pass@123",
+  isAdmin:true
+},
+{
+  id:"2",
+  username:"ramesh",
+  password:"pass@1234",
+  isAdmin:false
+},{
+  id:"3",
+  username:"chitti",
+  password:"pass@12",
+  isAdmin:true
+}]
+function verifyToken(req, res, next) {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader) {
+    const token = authHeader.split(" ")[1];
+    jwt.verify(token, secretkey, (err, user) => {
+      if (err) return res.status(403).json("Invalid token");
+      req.user = user;
+      next();
+    });
+  } else {
+    res.status(401).json("No token provided");
+  }
+}
+
+app.post('/api/login',(req,res)=>{
+  const { username , password } = req.body;
+  const user = users.find((person) => {
+    return person.username === username && person.password === password
+  })
+  if(user){
+    const accesstoken = jwt.sign({
+      id:user.id,
+      username:user.username,
+      isAdmin:user.isAdmin
+    },secretkey)
+    res.json({
+      username:user.username,
+      isAdmin:user.isAdmin,
+      accesstoken
+    })
+  }else{
+    res.status(401).json("user crential not matched")
+  }
+})
+app.delete('/api/delete/:id', verifyToken, (req, res) => {
+  const userId = req.params.id;
+
+  // Example: check if the logged-in user matches
+  if (req.user.id === userId || req.user.isAdmin) {
+    // Delete logic here (e.g. remove from database)
+    res.json({ message: `User with ID ${userId} deleted.` });
+  } else {
+    res.status(403).json("You are not allowed to delete this user");
+  }
+});
+
+ app.listen(PORT, () => {
+   console.log(`Server is running on port ${PORT}`);
+ });
+
+json
+
+ "mongodb+srv://prasad:abcd1234@cluster0.takdi6s.mongodb.net/intro"
+
+
+
+//API secretkey : "4IZMptSt0VUo3NmTJzAIEA4Hk98"
+//API key : "789237159442939" 
+
+
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import {
+  Heart,
+  MessageCircle,
+  Bookmark,
+  Send,
+  Home,
+  Search,
+  PlusSquare,
+  User,
+} from "lucide-react";
+
+function Dhome() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  // const handlelikes = async (targetid) => {
+  //   try {
+  //     const res = await axios.post(
+  //       "http://localhost:5500/user/handlelikes",
+  //       { postId: targetid }, // backend must expect postId
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+  //     console.log("handlelike::", res.data);
+
+  //     // Optional: update the like count locally (assuming server returns updated post)
+  //     setPosts((prevPosts) =>
+  //       prevPosts.map((post) =>
+  //         post.id === targetid
+  //           ? { ...post, likes: (post.likes || 0) + 1 }
+  //           : post
+  //       )
+  //     );
+  //   } catch (error) {
+  //     console.error("Error liking post:", error);
+  //   }
+  // };
+
+  useEffect(() => {
+    if (!token) return;
+
+    axios
+      .get("http://localhost:5500/user/getpost", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        //const postData = Array.isArray(res.data) ? res.data.posts : [];
+        setPosts(res.data.posts);
+        console.log("posta data::", res.data.posts);
+        setLoading(false);
+        res.data.posts.map((post,i)=>{console.log("pic::",i,post.image)})
+
+      })
+      .catch((err) => {
+        console.log("Error fetching posts:", err);
+        setPosts([]);
+        setLoading(false);
+      });
+  }, [token]);
+
+  return (
+    <div className="max-w-lg mx-auto bg-white min-h-screen">
+      <div className="grid grid-cols-3 gap-1">
+          {posts.map((post, i) => (
+            <div key={i} className="aspect-square bg-gray-100 relative group overflow-hidden">
+              
+                <img src={post.image} alt="pic" className="w-full h-full object-cover" />
+              <div className="absolute inset-0  bg-opacity-0 group-hover:bg-opacity-20 transition-opacity"></div>
+            </div>
+          ))}
+        </div>
+    </div>
+  );
+}
+
+export default Dhome;
+
+
