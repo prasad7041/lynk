@@ -14,7 +14,7 @@ const Login = () => {
     setLoading(true);
     try {
       console.log("this is handle submit");
-      const response = await axios.post("http://localhost:5501/user/login", form);
+      const response = await axios.post("https://lynk-backend-bmv8.onrender.com/user/login", form);
       console.log("response", response.data);
       if (response.data.success) {
         localStorage.setItem("token", response.data.token);
