@@ -30,7 +30,7 @@ function Addpost() {
       const formData = new FormData();
       formData.append("image", selectedFile);
 
-      const uploadRes = await fetch("http://localhost:5501/user/upload", {
+      const uploadRes = await fetch("https://lynk-backend-bmv8.onrender.com/user/upload", {
         method: "POST",
         body: formData,
       });
@@ -39,7 +39,7 @@ function Addpost() {
       if (!imageUrl) throw new Error("Image upload failed");
 
       const postRes = await axios.post(
-        "http://localhost:5501/user/addpost",
+        "https://lynk-backend-bmv8.onrender.com/user/addpost",
         { image: imageUrl, caption },
         {
           headers: {
