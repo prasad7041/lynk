@@ -13,7 +13,7 @@ function PostViewer({ post, onClose, currentUser, token, profilepic }) {
   const handleLike = async () => {
     try {
       await axios.post(
-        "http://localhost:5501/user/handlelikes",
+        "https://lynk-backend-bmv8.onrender.com/user/handlelikes",
         { targetid: post._id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -33,7 +33,7 @@ function PostViewer({ post, onClose, currentUser, token, profilepic }) {
     if (!newComment.trim()) return;
     try {
       const { data } = await axios.post(
-        "http://localhost:5501/user/comment",
+        "https://lynk-backend-bmv8.onrender.com/user/comment",
         { postid: post._id, text: newComment },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -50,13 +50,13 @@ function PostViewer({ post, onClose, currentUser, token, profilepic }) {
     try {
       if (isFollowing) {
         await axios.post(
-          "http://localhost:5501/user/unfollow",
+          "https://lynk-backend-bmv8.onrender.com/user/unfollow",
           { targetname: post.imageuser },
           { headers: { Authorization: `Bearer ${token}` } }
         );
       } else {
         await axios.post(
-          "http://localhost:5501/user/follow",
+          "https://lynk-backend-bmv8.onrender.com/user/follow",
           { targetname: post.imageuser },
           { headers: { Authorization: `Bearer ${token}` } }
         );
