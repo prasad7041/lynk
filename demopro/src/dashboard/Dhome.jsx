@@ -27,7 +27,7 @@ function Dhome() {
   const handleLike = async (postId) => {
     try {
       await axios.post(
-        "http://localhost:5501/user/handlelikes",
+        "https://lynk-backend-bmv8.onrender.com/user/handlelikes",
         { targetid: postId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -51,7 +51,7 @@ function Dhome() {
   const handlesaved = async (postid) => {
     try {
       await axios.post(
-        "http://localhost:5501/user/saved",
+        "https://lynk-backend-bmv8.onrender.com/user/saved",
         { targetid: postid },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -71,7 +71,7 @@ function Dhome() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5501/user/comment",
+        "https://lynk-backend-bmv8.onrender.com/user/comment",
         { postid: postId, text: newComment },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -93,7 +93,7 @@ function Dhome() {
   const handleFollow = async (username) => {
     try {
       await axios.post(
-        "http://localhost:5501/user/follow",
+        "https://lynk-backend-bmv8.onrender.com/user/follow",
         { targetname: username },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -118,7 +118,7 @@ function Dhome() {
   const handleUnfollow = async (username) => {
     try {
       await axios.post(
-        "http://localhost:5501/user/unfollow",
+        "https://lynk-backend-bmv8.onrender.com/user/unfollow",
         { targetname: username },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -145,7 +145,7 @@ function Dhome() {
 
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5501/user/getpost", {
+        const { data } = await axios.get("https://lynk-backend-bmv8.onrender.com/user/getpost", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
