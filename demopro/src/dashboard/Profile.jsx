@@ -24,7 +24,7 @@ function Profile() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await axios.get("http://localhost:5501/user/userprofile", {
+        const res = await axios.get("https://lynk-backend-bmv8.onrender.com/user/userprofile", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -54,7 +54,7 @@ function Profile() {
       const formData = new FormData();
       formData.append("image", selectedImage);
 
-      const res = await fetch("http://localhost:5501/user/upload", {
+      const res = await fetch("https://lynk-backend-bmv8.onrender.com/user/upload", {
         method: "POST",
         body: formData,
         headers: { Authorization: `Bearer ${token}` },
@@ -74,7 +74,7 @@ function Profile() {
   const handleSave = async () => {
     try {
       await axios.post(
-        "http://localhost:5501/user/updateprofile",
+        "https://lynk-backend-bmv8.onrender.com/user/updateprofile",
         { username: newUsername, bio: newBio },
         { headers: { Authorization: `Bearer ${token}` } }
       );
