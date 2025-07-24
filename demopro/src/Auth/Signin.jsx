@@ -12,7 +12,7 @@ const Signin = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5501/user/create", form);
+      const res = await axios.post("https://lynk-backend-bmv8.onrender.com/user/create", form);
       console.log("account created::", res);
       localStorage.setItem("token", res.data.token);
       setMessage("");
