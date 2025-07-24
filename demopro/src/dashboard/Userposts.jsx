@@ -11,7 +11,7 @@ const Userposts = () => {
     const fetchUserPosts = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:5501/user/userpost",
+          "https://lynk-backend-bmv8.onrender.com/user/userpost",
           {},
           { headers: { Authorization: `Bearer ${token}` } }
         );
