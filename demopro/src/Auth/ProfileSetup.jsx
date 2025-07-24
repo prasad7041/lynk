@@ -45,7 +45,7 @@ const ProfileSetup = ({ userid }) => {
       //console.log("form data 2 ::",formData2)
       console.log("profilepic::",profilePic.imageUrl)
       console.log("bio::",bio)
-      const res2 =  await axios.post('http://localhost:5501/user/setup', {"profilepic": profilePic.imageUrl,
+      const res2 =  await axios.post('https://lynk-backend-bmv8.onrender.com/user/setup', {"profilepic": profilePic.imageUrl,
      "bio": bio
 }, {
   headers: {
